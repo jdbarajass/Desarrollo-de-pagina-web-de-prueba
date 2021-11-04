@@ -9,10 +9,10 @@ const Home: NextPage = () => {
       <Link href="/ciencias">
         <a className="cursor-pointer">Ir a admin página ciencias</a>
       </Link>
-      <Link href="/login">
-        <a className="cursor-pointer">Ir a aLogin</a>
+      <Link href="">
+        <a className="cursor-pointer">Ir a Login</a>
       </Link>
-      <Link href="/navbar">
+      <Link href="">
         <a className="cursor-pointer">Ir Navbar</a>
       </Link>
       <Link href="/prueba">
