@@ -4,15 +4,15 @@ import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-green-500">
+    <div className="bg-green-500 flex flex-col justify-center">
       <p>Página de Index</p>
       <Link href="/ciencias">
         <a className="cursor-pointer">Ir a admin página ciencias</a>
       </Link>
-      <Link href="/Login">
+      <Link href="/login">
         <a className="cursor-pointer">Ir a aLogin</a>
       </Link>
-      <Link href="/Navbar">
+      <Link href="/navbar">
         <a className="cursor-pointer">Ir Navbar</a>
       </Link>
     </div>
