@@ -16,7 +16,10 @@ const Home: NextPage = () => {
         <a className="cursor-pointer">Ir Navbar</a>
       </Link>
       <Link href="/prueba">
-        <a className="cursor-pointer">Ir Pruebas</a>
+        <a className="cursor-pointer">Ir Pruebas 1</a>
+      </Link>
+      <Link href="/admin/Diseno3D">
+        <a className="cursor-pointer">Ir Diseno3D</a>
       </Link>
     </div>
   );

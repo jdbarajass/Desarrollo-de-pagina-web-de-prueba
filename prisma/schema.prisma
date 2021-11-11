@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Producto {
+id String @id @default(cuid()) 
+nombre String 
+foto String
+inventario Inventario?
+}
+// Cuando hay una tabla que puede existir sin la otra para poder hacer la relacion de uno a uno debo colocar Inventario? y el signo de pregunta que significa que es opcional 
+// ciud es para que nos cree id de tipo strings unicos que no colapsen entre ellos
+model Inventario {
+id          String @id @default(cuid())
+cantidad    Int
+producto    Producto @relation(fields: [productoId], references: [id])
+productoId  String @unique 
+movimientoInventario MovimientoInventario[]
+}
+enum Enum_TipoMovimiento {
+  Entrada 
+  Salida
+}
+// los enum estaran en la seccion de datos y se vizualizaran como un seleccion de opciones
+
+model MovimientoInventario {
+  id String @id @default(cuid())
+  inventario Inventario @relation(fields: [inventarioId], references: [id])
+  inventarioId String 
+  cantidad Int
+  tipoMovimiento Enum_TipoMovimiento
+  fecha DateTime
+  usuario Usuario? @relation(fields: [usuarioId], references:[id])
+  usuarioId String?
+}
+
+model Usuario {
+id String @id @default(cuid())
+nombre String 
+correo String @unique
+movimientos MovimientoInventario[]
+}
+// Si yo quiero que los correos sean unicos coloco @unique 
+// npx prisma migrate dev --name MigracionInicial = es el comando para que el por detras haga comando de bases de datos para que sincronice y me cree la base de datos
+// yarn add @prisma/client que basicamente prisma regala un CRUD es decir nos regala operacionies de lectura modificacion actualizacion creacion y eliminacion
+// npx prisma generate
+// npx prisma studio = monta como un localhost:5555 con una interfaz para agregar productos y demás cosas, crea informacion en la base de datos es más como para hacer pruebas
